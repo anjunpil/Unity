@@ -14,6 +14,31 @@ namespace ConsoleApp1
 {
     class Program
     {
+        static int intplus(int x, int y)
+        {
+            int result = x + y;
+            return result;
+        }
+
+        static void intplus2(int a)
+        {
+            a += 100;
+            
+        }
+        static void intplus2(ref int a)
+        {
+            a += 1000;
+        }
+
+        static void len(params object[] obj)
+        {
+            for (int i = 0; i < obj.Length; i++)
+            {
+                Console.WriteLine("index {0} ,{1}",i,obj[i]);
+                Console.WriteLine();
+            }
+        }
+     
         //static 한정자 , 정적인 method 
         //void 반환값이 없다
         static void Main(string[] args)
@@ -147,11 +172,53 @@ namespace ConsoleApp1
 
 
 
+            //method c 나 c++에선 함수로 불림
+            //class 클래스 이름
+            //{  
+            //      [한정자][반환 형식][메서드 이름]([매개변수])
+            //      {   
+            //          //실행코드
+            //          return [반환 형식 결과];
+            //      }
+            //}
 
+            // 한정자 우리가 메소드를 호출할 수 있는 권한을 정해 두는 것
+            // 한정자가 없으면 바로 private으로 둠
+            //public  공개 누구나 접근하여 사용가능
+            //protected 일부 공개 (자신이 만들어진 하위 클래스 or 상속 받는 하위 class에서만 사용)
+            //private 비공개(자신의 class에서만 사용)
 
+            //반환형식
+            //void 반환할 것이 없을때
+            //int return값이 int로 들어감
 
+            //static 정적메소드 프로그램이 처음 실행될 때 메모리에 자동적으로 생산됨
+            //시작점(main(string[]) args)) main 메소드 또한 static으로 선언
 
+            int plus = intplus(10, 20);
+            Console.WriteLine(plus);
+
+            //오버로딩 같은 이름의 메서드 이지만 매개변수로 받는 인자값을 달리하여 각각 메서드들이 만들어져 있고 매개변수에 따라
+            //각각 대응하는것
+
+            //매개변수 전달방식은 값에 의한 전달(call by value) 참조에 의한 전달(call by reference)
+            //값에 의한 전달 방식은 변경을 할 수 없음
+            //참조에 의한 전달 ref , out , in ref는 먼저 초기화해서 사용해야함, out은 초기화하지 않아도 사용 가능 in 은 고정값
+            int nA = 10;
+            intplus2(nA);
+            Console.WriteLine(nA);
+            intplus2(ref nA);
+            Console.WriteLine(nA);
+
+            int nB = 10;
+
+            //params 일반적인 배열의 형태 뿐 아니라 여러가지 매개변수들을 받아들일 수 있음
+
+            object[] objArray = { 777, 888, 'k', "test" };
+            len(objArray);
+            
         }
+        
     }
 }
 
